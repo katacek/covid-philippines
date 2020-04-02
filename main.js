@@ -55,7 +55,7 @@ Apify.main(async () =>
             sourceUrl:'https://ncovtracker.doh.gov.ph/',
             lastUpdatedAtApify: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes())).toISOString(),
             lastUpdatedAtSource: "N/A",
-            // readMe: 'https://apify.com/katerinahronik/covid-uk',
+            readMe: 'https://apify.com/katerinahronik/covid-philippines',
             };
         return data;
         
