@@ -51,7 +51,7 @@ Apify.main(async () =>
             PUIs: getInt(PUIs),
             PUMs: getInt(PUMs),
             country: "Phillipines",
-            //historyData: "https://api.apify.com/v2/datasets/K1mXdufnpvr53AFk6/items?format=json&clean=1",
+            historyData: "https://api.apify.com/v2/datasets/sFSef5gfYg3soj8mb/items?format=json&clean=1",
             sourceUrl:'https://ncovtracker.doh.gov.ph/',
             lastUpdatedAtApify: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes())).toISOString(),
             lastUpdatedAtSource: "N/A",
