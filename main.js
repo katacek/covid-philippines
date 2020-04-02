@@ -15,12 +15,14 @@ Apify.main(async () =>
     const browser = await Apify.launchPuppeteer();
 
     const page = await browser.newPage();
-    await Apify.utils.puppeteer.injectJQuery(page);
-
+   
     console.log('Going to the website...');
     await page.goto('https://ncovtracker.doh.gov.ph/'), { waitUntil: 'networkidle0', timeout: 60000 };
+    await Apify.utils.puppeteer.injectJQuery(page);
     
-    await page.waitForSelector("text[vector-effect='non-scaling-stroke']");
+    //await page.waitForSelector("text[vector-effect='non-scaling-stroke']");
+    await page.waitFor(4000);
+    await page.waitForSelector(".esriMapContainer");
  
     console.log('Getting data...');
     // page.evaluate(pageFunction[, ...args]), pageFunction <function|string> Function to be evaluated in the page context, returns: <Promise<Serializable>> Promise which resolves to the return value of pageFunction
