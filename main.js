@@ -17,10 +17,10 @@ Apify.main(async () =>
     const page = await browser.newPage();
    
     console.log('Going to the website...');
-    await page.goto('https://ncovtracker.doh.gov.ph/'), { waitUntil: 'networkidle0', timeout: 60000 };
+    await page.goto('https://dohph.maps.arcgis.com/apps/opsdashboard/index.html#/3dda5e52a7244f12a4fb3d697e32fd39'), { waitUntil: 'networkidle0', timeout: 60000 };
     await Apify.utils.puppeteer.injectJQuery(page);
     
-    //await page.waitForSelector("text[vector-effect='non-scaling-stroke']");
+    await page.waitForSelector("text[vector-effect='non-scaling-stroke']");
     await page.waitFor(4000);
     //await page.waitForSelector(".esriMapContainer");
  
@@ -28,6 +28,10 @@ Apify.main(async () =>
     // page.evaluate(pageFunction[, ...args]), pageFunction <function|string> Function to be evaluated in the page context, returns: <Promise<Serializable>> Promise which resolves to the return value of pageFunction
     const result = await page.evaluate(() =>
     {
+        
+        const getInt = (x)=>{
+            return parseInt(x.replace(' ','').replace(',',''))};
+        
         const now = new Date();
         
         // eq() selector selects an element with a specific index number, text() method sets or returns the text content of the selected elements
@@ -39,12 +43,12 @@ Apify.main(async () =>
         const PUIsTested = $("text[vector-effect='non-scaling-stroke']").eq(12).text();
                      
         const data = {
-            infected: confirmed,
-            tested: PUIsTested,
-            recovered: recovered,
-            deceased: deceased,
-            PUIs: PUIs,
-            PUMs: PUMs,
+            infected: getInt(confirmed),
+            tested: getInt(PUIsTested),
+            recovered: getInt(recovered),
+            deceased: getInt(deceased),
+            PUIs: getInt(PUIs),
+            PUMs: getInt(PUMs),
             country: "Phillipines",
             //historyData: "https://api.apify.com/v2/datasets/K1mXdufnpvr53AFk6/items?format=json&clean=1",
             sourceUrl:'https://ncovtracker.doh.gov.ph/',
