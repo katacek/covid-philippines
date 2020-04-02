@@ -28,7 +28,8 @@ Apify.main(async () =>
     // page.evaluate(pageFunction[, ...args]), pageFunction <function|string> Function to be evaluated in the page context, returns: <Promise<Serializable>> Promise which resolves to the return value of pageFunction
     const result = await page.evaluate(() =>
     {
-
+        const now = new Date();
+        
         // eq() selector selects an element with a specific index number, text() method sets or returns the text content of the selected elements
         const confirmed = $("text[vector-effect='non-scaling-stroke']").eq(1).text();
         const PUIs = $("text[vector-effect='non-scaling-stroke']").eq(3).text();
@@ -47,7 +48,7 @@ Apify.main(async () =>
             country: "Phillipines",
             //historyData: "https://api.apify.com/v2/datasets/K1mXdufnpvr53AFk6/items?format=json&clean=1",
             sourceUrl:'https://ncovtracker.doh.gov.ph/',
-            //lastUpdatedAtApify: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes())).toISOString(),
+            lastUpdatedAtApify: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes())).toISOString(),
             lastUpdatedAtSource: "N/A",
             // readMe: 'https://apify.com/katerinahronik/covid-uk',
             };
