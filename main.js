@@ -47,7 +47,7 @@ Apify.main(async () =>
             country: "Phillipines",
             //historyData: "https://api.apify.com/v2/datasets/K1mXdufnpvr53AFk6/items?format=json&clean=1",
             sourceUrl:'https://ncovtracker.doh.gov.ph/',
-            lastUpdatedAtApify: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes())).toISOString(),
+            //lastUpdatedAtApify: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes())).toISOString(),
             lastUpdatedAtSource: "N/A",
             // readMe: 'https://apify.com/katerinahronik/covid-uk',
             };
