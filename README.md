@@ -1,9 +1,9 @@
-# My beautiful actor
+# Coronavirus stats in the Republic of Philippines
 
-The `README.md` file contains a documentation what your actor does and how to use it,
-which is then displayed in the app or Apify Store. It's always a good
-idea to write a good `README.md`, in a few months not even you
-will remember all the details about the actor.
+Actor gets an actual number of infected, tested, recovered, deceased, PUIs and PUMs people in the Republic of Philippines from https://ncovtracker.doh.gov.ph/ .
 
-You can use [Markdown](https://www.markdownguide.org/cheat-sheet)
-language for rich formatting.
+Latest data are available at this URL: https://api.apify.com/v2/key-value-stores/lFItbkoNDXKeSWBBA/records/LATEST?disableRedirect=true.
+
+You can find a dataset with unique history items here https://api.apify.com/v2/datasets/sFSef5gfYg3soj8mb/items?format=json&clean=1.
+
+URL is being actualized every 5 minutes.
