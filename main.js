@@ -37,18 +37,18 @@ Apify.main(async () =>
         
         // eq() selector selects an element with a specific index number, text() method sets or returns the text content of the selected elements
         const confirmed = $("text[vector-effect='non-scaling-stroke']").eq(1).text();
-        //const PUIs = $("text[vector-effect='non-scaling-stroke']").eq(3).text();
+        const PUIs = $("text[vector-effect='non-scaling-stroke']").eq(3).text();
         //const PUMs = $("text[vector-effect='non-scaling-stroke']").eq(5).text();
-        const recovered = $("text[vector-effect='non-scaling-stroke']").eq(3).text();
-        const deceased = $("text[vector-effect='non-scaling-stroke']").eq(5).text();
-       // const PUIsTested = $("text[vector-effect='non-scaling-stroke']").eq(12).text();
+        const recovered = $("text[vector-effect='non-scaling-stroke']").eq(5).text();
+        const deceased = $("text[vector-effect='non-scaling-stroke']").eq(7).text();
+        const PUIsTested = $("text[vector-effect='non-scaling-stroke']").eq(10).text();
                      
         const data = {
             infected: getInt(confirmed),
-            //tested: getInt(PUIsTested),
+            tested: getInt(PUIsTested),
             recovered: getInt(recovered),
             deceased: getInt(deceased),
-            //PUIs: getInt(PUIs),
+            PUIs: getInt(PUIs),
             //PUMs: getInt(PUMs),
             country: "Philippines",
             historyData: "https://api.apify.com/v2/datasets/sFSef5gfYg3soj8mb/items?format=json&clean=1",
