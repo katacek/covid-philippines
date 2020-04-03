@@ -63,7 +63,7 @@ Apify.main(async () =>
     
     console.log(result)
     
-    if ( !result.infected || !result.tested || !result.deceased|| !result.recovered|| !result.deceased|| !result.PUIs|| !result.PUMs) {
+    if ( !result.infected || !result.tested || !result.deceased|| !result.recovered) {
                 check = true;
             }
     else {
