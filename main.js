@@ -19,11 +19,10 @@ Apify.main(async () =>
     console.log('Going to the website...');
     
     // the source url (html page source) is just a link to this page
-    await page.goto('https://dohph.maps.arcgis.com/apps/opsdashboard/index.html#/3dda5e52a7244f12a4fb3d697e32fd39', { timeout: 60000 });
+    await page.goto('https://dohph.maps.arcgis.com/apps/opsdashboard/index.html#/3dda5e52a7244f12a4fb3d697e32fd39', {  waitUntil: "networkidle0", timeout: 60000 });
     await Apify.utils.puppeteer.injectJQuery(page);
     
-    await page.waitFor(10000);
-    await page.waitForSelector("text[vector-effect='non-scaling-stroke']");
+    await await page.waitForSelector("text[vector-effect='non-scaling-stroke']");
     await page.waitFor(10000);
     
     console.log('Getting data...');
