@@ -22,6 +22,7 @@ Apify.main(async () =>
     await page.goto('https://dohph.maps.arcgis.com/apps/opsdashboard/index.html#/3dda5e52a7244f12a4fb3d697e32fd39', { timeout: 60000 });
     await Apify.utils.puppeteer.injectJQuery(page);
     
+    await page.waitFor(10000);
     await page.waitForSelector("text[vector-effect='non-scaling-stroke']");
     await page.waitFor(10000);
     
