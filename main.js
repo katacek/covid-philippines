@@ -18,11 +18,11 @@ Apify.main(async () =>
    
     console.log('Going to the website...');
     
-    // the source url (html page source) is just a link to this page
-    await page.goto('https://dohph.maps.arcgis.com/apps/opsdashboard/index.html#/3dda5e52a7244f12a4fb3d697e32fd39', { timeout: 60000 });
+    // the source url (html page source) link to this page
+    await page.goto('https://www.doh.gov.ph/2019-nCoV', { timeout: 60000 });
     await Apify.utils.puppeteer.injectJQuery(page);
     
-    await await page.waitForSelector("text[vector-effect='non-scaling-stroke']", { timeout: 60000 });
+    //await await page.waitForSelector("text[vector-effect='non-scaling-stroke']", { timeout: 60000 });
     await page.waitFor(10000);
     
     console.log('Getting data...');
@@ -36,11 +36,14 @@ Apify.main(async () =>
         const now = new Date();
         
         // eq() selector selects an element with a specific index number, text() method sets or returns the text content of the selected elements
-        const confirmed = $('text:contains(Confirmed)').closest('full-container').find("text[vector-effect='non-scaling-stroke']").eq(1).text().trim();
+        //const confirmed = $('text:contains(Confirmed)').closest('full-container').find("text[vector-effect='non-scaling-stroke']").eq(1).text().trim();
+        const confirmed = $('#block-block-17 > div > table > tbody > tr:nth-child(1) > td:nth-child(2) > p > font > b').text().trim();
         //const PUIs = $("text[vector-effect='non-scaling-stroke']").eq(3).text();
         //const PUMs = $("text[vector-effect='non-scaling-stroke']").eq(5).text();
-        const recovered = $('text:contains(Recovered)').closest('full-container').find('.responsive-text').eq(1).text().trim();
-        const deceased = $('text:contains(Deaths)').closest('full-container').find('.responsive-text').eq(1).text().trim();
+        //const recovered = $('text:contains(Recovered)').closest('full-container').find('.responsive-text').eq(1).text().trim();
+        const recovered = $('#block-block-17 > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > p > font > b').text().trim();
+        //const deceased = $('text:contains(Deaths)').closest('full-container').find('.responsive-text').eq(1).text().trim();
+        const deceased = $('#block-block-17 > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > p > strong').text().trim();
         //const PUIsTested = $("text[vector-effect='non-scaling-stroke']").eq(10).text();
                      
         const data = {
