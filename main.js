@@ -70,7 +70,7 @@ Apify.main(async () =>
     console.log(result)
     
     if ( !result.infected || !result.deceased|| !result.recovered) {
-                check = true;
+                throw "One of the output is null";
             }
     else {
             let latest = await kvStore.getValue(LATEST);
