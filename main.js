@@ -7,53 +7,39 @@ let check = false;
 Apify.main(async () =>
 {
 
+
+
+    
+
+
+
+
     const kvStore = await Apify.openKeyValueStore('COVID-19-PH');
     const dataset = await Apify.openDataset('COVID-19-PH-HISTORY');
-    const { email } = await Apify.getValue('INPUT');
+    //const { email } = await Apify.getValue('INPUT');
 
-    try{
-
-
-    console.log('Launching Puppeteer...');
-    const browser = await Apify.launchPuppeteer();
-
-    const page = await browser.newPage();
-   
-    console.log('Going to the website...');
-    
-    // the source url (html page source) link to this page
-    await page.goto('https://www.doh.gov.ph/2019-nCoV', { timeout: 60000 });
-    await Apify.utils.puppeteer.injectJQuery(page);
-    
-    //await await page.waitForSelector("text[vector-effect='non-scaling-stroke']", { timeout: 60000 });
-    await page.waitFor(10000);
-    
-    console.log('Getting data...');
-    // page.evaluate(pageFunction[, ...args]), pageFunction <function|string> Function to be evaluated in the page context, returns: <Promise<Serializable>> Promise which resolves to the return value of pageFunction
-    const result = await page.evaluate(() =>
+    try
     {
         
-        const getInt = (x)=>{
-            return parseInt(x.replace(' ','').replace(',',''))};
-        
         const now = new Date();
+
+    const sheetsInput = {
+        mode: 'read',
+        publicSpreadsheet: true,
+        spreadsheetId: '1BLbrvgjkBWxr9g73xX9DLOqmbmuYyKc-_b8jIxCX1uo', // update to your ID
+        range:"Case Information!H:H"
+        };
+        const myData = (await Apify.call('lukaskrivka/google-sheets', sheetsInput)).output.body;
+        const confirmed = myData.length;
         
-        // eq() selector selects an element with a specific index number, text() method sets or returns the text content of the selected elements
-        //const confirmed = $('text:contains(Confirmed)').closest('full-container').find("text[vector-effect='non-scaling-stroke']").eq(1).text().trim();
-        const confirmed = $('#block-block-17 > div > table > tbody > tr:nth-child(1) > td:nth-child(2) > p > font > b').text().trim();
-        //const PUIs = $("text[vector-effect='non-scaling-stroke']").eq(3).text();
-        //const PUMs = $("text[vector-effect='non-scaling-stroke']").eq(5).text();
-        //const recovered = $('text:contains(Recovered)').closest('full-container').find('.responsive-text').eq(1).text().trim();
-        const recovered = $('#block-block-17 > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > p > font > b').text().trim();
-        //const deceased = $('text:contains(Deaths)').closest('full-container').find('.responsive-text').eq(1).text().trim();
-        const deceased = $('#block-block-17 > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > p > strong').text().trim();
-        //const PUIsTested = $("text[vector-effect='non-scaling-stroke']").eq(10).text();
-                     
-        const data = {
-            infected: getInt(confirmed),
+        const recovered = myData.filter(x => x.RemovalType =='Recovered').length;
+        const deceased = myData.filter(x => x.RemovalType == 'Died').length;    
+     
+        const result = {
+            infected: confirmed,
             tested: "N/A",
-            recovered: getInt(recovered),
-            deceased: getInt(deceased),
+            recovered: recovered,
+            deceased: deceased,
             //PUIs: getInt(PUIs),
             //PUMs: getInt(PUMs),
             country: "Philippines",
@@ -63,9 +49,9 @@ Apify.main(async () =>
             lastUpdatedAtSource: "N/A",
             readMe: 'https://apify.com/katerinahronik/covid-philippines',
             };
-        return data;
         
-    });       
+         
+        
     
     console.log(result)
     
