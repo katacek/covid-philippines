@@ -15,7 +15,7 @@ Apify.main(async () =>
         
         const now = new Date();
 
-    const sheetsInput = {
+        const sheetsInput = {
         mode: 'read',
         publicSpreadsheet: true,
         spreadsheetId: '1BLbrvgjkBWxr9g73xX9DLOqmbmuYyKc-_b8jIxCX1uo', // update to your ID
@@ -73,21 +73,6 @@ Apify.main(async () =>
     await browser.close();
     console.log('Done.');  
     
-    // if there are no data for TotalInfected, send email, because that means something is wrong
-    // const env = await Apify.getEnv();
-    //   if (check) {
-    //     await Apify.call(
-    //         'apify/send-mail',
-    //         {
-    //             to: email,
-    //             subject: `Covid-19 Philippines from ${env.startedAt} failed `,
-    //             html: `Hi, ${'<br/>'}
-    //                     <a href="https://my.apify.com/actors/${env.actorId}#/runs/${env.actorRunId}">this</a> 
-    //                     run had 0 in one of the variables, check it out.`,
-    //         },
-    //         { waitSecs: 0 },
-    //     );
-    // };
 }
 catch(err){
 
