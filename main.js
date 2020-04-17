@@ -19,7 +19,7 @@ Apify.main(async () =>
         mode: 'read',
         publicSpreadsheet: true,
         spreadsheetId: '1wiO8371BXPulxy6ETxN7LOECSH09vUOCoeaavcBhQyM', // update to your ID
-        range:"DOH COVID Data Drop_ 20200417 - 05 Case Information!H:H"
+        range:"DOH COVID Data Drop_ 20200417 - 05 Case Information!A:H"
         };
         const myData = (await Apify.call('lukaskrivka/google-sheets', sheetsInput)).output.body;
         const confirmed = myData.length;
