@@ -18,7 +18,7 @@ Apify.main(async () =>
         const sheetsInput = {
         mode: 'read',
         publicSpreadsheet: true,
-        spreadsheetId: '1a_jzh0wxmGvVfKXpCYiwBsKS_54u3xoc', // update to your ID
+        spreadsheetId: '1eWTxpLV1xe6lfgiXmtZBRHY7pjWz-VOVLQbqRaBbzBA', // update to your ID
         range:"04 Case Information!H:H"
         };
         const myData = (await Apify.call('lukaskrivka/google-sheets', sheetsInput)).output.body;
