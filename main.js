@@ -18,8 +18,8 @@ Apify.main(async () =>
         const sheetsInput = {
         mode: 'read',
         publicSpreadsheet: true,
-        spreadsheetId: '1BLbrvgjkBWxr9g73xX9DLOqmbmuYyKc-_b8jIxCX1uo', // update to your ID
-        range:"Case Information!H:H"
+        spreadsheetId: '1rLAZH7wN9DkigkFD070gy5YbEPr-RPQaqPvnePrh31E', // update to your ID
+        range:"DOH COVID Data Drop_ 20200415 - 04 Case Information!H:H"
         };
         const myData = (await Apify.call('lukaskrivka/google-sheets', sheetsInput)).output.body;
         const confirmed = myData.length;
@@ -38,7 +38,7 @@ Apify.main(async () =>
             historyData: "https://api.apify.com/v2/datasets/sFSef5gfYg3soj8mb/items?format=json&clean=1",
             sourceUrl:'https://ncovtracker.doh.gov.ph/',
             lastUpdatedAtApify: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes())).toISOString(),
-            lastUpdatedAtSource: "N/A",
+            lastUpdatedAtSource: "2020-04-15",
             readMe: 'https://apify.com/katerinahronik/covid-philippines',
             };
         
