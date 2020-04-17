@@ -70,7 +70,6 @@ Apify.main(async () =>
 
 
     console.log('Closing Puppeteer...');
-    await browser.close();
     console.log('Done.');  
     
 }
