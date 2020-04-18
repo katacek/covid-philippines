@@ -22,8 +22,8 @@ async function selectorExists(page, selector)
 
 Apify.main(async () =>
 {
-    const kvStore = await Apify.openKeyValueStore('COVID-19-PH-TEST');
-    const dataset = await Apify.openDataset('COVID-19-PH-HISTORY-TEST');
+    const kvStore = await Apify.openKeyValueStore('COVID-19-PH');
+    const dataset = await Apify.openDataset('COVID-19-PH-HISTORY');
     
     try
     {
