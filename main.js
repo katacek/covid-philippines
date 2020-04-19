@@ -30,7 +30,7 @@ Apify.main(async () =>
         //getting date string
         let actualDateString = new moment().format('YYYYMMDD');
         let actualSelector = `div:contains(DOH COVID Data Drop_ ${actualDateString})[jsaction*=click]`;
-        const tommorowSelector = `div:contains(DOH COVID Data Drop_ ${new moment().add(1, 'days').format('YYYYMMDD')})[jsaction*=click]`;    
+        const yesterdaySelector = `div:contains(DOH COVID Data Drop_ ${new moment().subtract(1, 'days').format('YYYYMMDD')})[jsaction*=click]`;    
 
         console.log('Launching Puppeteer...');
         const browser = await Apify.launchPuppeteer({ headless: false });
@@ -42,10 +42,10 @@ Apify.main(async () =>
         await Apify.utils.puppeteer.injectJQuery(page);
         await page.waitFor(1000);
         
-        //try tomorrow if no selector, then today
-        if (await selectorExists(page, tommorowSelector))
+        //try actual date, if no selector for today, then yesterday
+        if (! await selectorExists(page, actualSelector))
         {
-            actualSelector = tommorowSelector;
+            actualSelector = yesterdaySelector;
             //actualDateString = new moment().add(1, 'days').format('YYYYMMDD');
         }
         
