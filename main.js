@@ -38,7 +38,7 @@ Apify.main(async () =>
         // the source url (html page source) link to this page
 
          console.log('Going to the website...');
-        await page.goto('http://bit.ly/dohcovid19data', { timeout: 60000, waitUntil: 'networkidle0' });
+        await page.goto('https://drive.google.com/drive/folders/1w_O-vweBFbqCgzgmCpux2F0HVB4P6ni2', { timeout: 60000, waitUntil: 'networkidle0' });
         await Apify.utils.puppeteer.injectJQuery(page);
         await page.waitFor(1000);
         
